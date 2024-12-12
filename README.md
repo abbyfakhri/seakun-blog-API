@@ -47,11 +47,12 @@ DB_NAME=seakun_blog
     ```bash
     docker run -d -p 9000:9000 --name seakun-blog-api-container seakun-blog-api:latest
     ```
+8. Try out the API [Postman Collection](#api)
 
 
 ---
 
-## **Clone and Download Project Dependencies**
+## **Setup Project Manually**
 
 1. Clone the repository:
     ```bash
@@ -125,7 +126,7 @@ npm run dev
 
 ---
 
-## **Try Out the API**
+## **<a href="#api">Try Out the API</a>**
 
 To test the API, you can download the Postman collection from [here](https://drive.google.com/file/d/1sClR675zy1b0Ez-yshg2hjo30IGJDVa_/view?usp=sharing).
 
