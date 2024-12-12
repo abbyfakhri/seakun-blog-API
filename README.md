@@ -4,6 +4,52 @@
 This is a simple API for a blog platform, where you can manage posts, including creating, reading, updating, and deleting blog posts.
 
 ---
+## **Setup Quickly Using Docker**
+1. Make sure to have docker installed in your system
+    ```bash
+    docker version
+    ```
+2. Create Database
+    - Access MySQL via terminal or a GUI database explorer.
+    - Create the database by running the following command:
+    ```sql
+    CREATE DATABASE your_database_name;
+    ```
+3. Clone project:
+    ```bash
+    git clone https://github.com/abbyfakhri/seakun-blog-API
+    ```
+4. Navigate into the project directory:
+    ```bash
+    cd seakun-blog-API
+    ```
+5. Create .env file
+Example:
+```env
+APP_NAME="seakun-blog-API"
+APP_PORT=9000
+BASEURL=localhost
+URL_PREFIX="/api/v1"
+APP_MODE=development
+
+DB_HOST=host.docker.internal // for docker to be able to access it's host network
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=
+DB_NAME=seakun_blog
+```
+
+6. Build Docker image
+    ```bash
+    docker build -t seakun-blog-api .
+    ```
+7. Run Docker Image as Container
+    ```bash
+    docker run -d -p 9000:9000 --name seakun-blog-api-container seakun-blog-api:latest
+    ```
+
+
+---
 
 ## **Clone and Download Project Dependencies**
 
@@ -27,7 +73,7 @@ This is a simple API for a blog platform, where you can manage posts, including 
 ## **Create `.env` File**
 
 Create a `.env` file in the root of the project and define the following environment variables:
-
+Example:
 ```env
 APP_NAME="seakun-blog-API"
 APP_PORT=9000
@@ -59,12 +105,12 @@ DB_NAME=seakun_blog
 
 1. Run the migration to create the tables:
     ```bash
-    npx sequelize-cli db:migrate
+    npm run db:migrate
     ```
 
 2. Optionally, you can seed the database with dummy data:
     ```bash
-    npx sequelize-cli db:seed:all
+    npm run db:seed
     ```
 
 ---
