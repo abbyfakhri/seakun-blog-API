@@ -137,6 +137,39 @@ To test the API, you can download the Postman collection from [here](https://dri
 ### **GET /posts**
 - **Description**: Retrieve a list of all blog posts.
 
+### **GET /posts?page=page_count&limit=return_limit**
+- **Description**: Retrieve a list of all blog posts using pagination.
+-  **Response Body**:
+  ```json
+{
+    "status": 200,
+    "message": "SUCCESS",
+    "errors": null,
+    "data": {
+        "currentPage": 1,
+        "totalPages": 10,
+        "totalItems": 20,
+        "itemsPerPage": 2,
+        "data": [
+            {
+                "id": 1,
+                "title": "Understanding JavaScript Closures",
+                "content": "Closures are a fundamental concept in JavaScript that allow functions to remember the scope in which they were created...",
+                "createdAt": "2024-12-12T17:47:29.000Z",
+                "updatedAt": "2024-12-12T17:47:29.000Z"
+            },
+            {
+                "id": 2,
+                "title": "mantap jiwa sekali",
+                "content": "goks mantap",
+                "createdAt": "2024-12-12T17:47:29.000Z",
+                "updatedAt": "2024-12-12T19:40:29.000Z"
+            }
+        ]
+    }
+}
+  ```
+
 ### **GET /posts/:id**
 - **Description**: Retrieve a single blog post by its ID.
 
