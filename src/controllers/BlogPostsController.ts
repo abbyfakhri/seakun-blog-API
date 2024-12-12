@@ -4,14 +4,45 @@ import Helper from "../helpers/Helper";
 
 const GetPosts: RequestHandler = async (req: Request, res: Response) => {
     try {
-        const posts = await Post.findAll();
-        if (!posts) {
-            res.status(404);
-            res.send(Helper.ResponseData(404, "Not Found", "Posts Not Found", null));
+        const { page, limit } = req.query;
+
+        if (!page || !limit) {
+            const posts = await Post.findAll();
+
+            if (!posts.length) {
+                res.status(404);
+                res.send(Helper.ResponseData(404, "Not Found", "Posts Not Found", null));
+                return;
+            }
+
+            res.status(200);
+            res.send(Helper.ResponseData(200, "SUCCESS", null, posts));
             return;
         }
+
+        const offset = (Number(page) - 1) * Number(limit);
+        const posts = await Post.findAndCountAll({
+            limit: Number(limit),
+            offset: offset
+        });
+
+        if (!posts.rows.length) {
+            res.status(404);
+            res.send(Helper.ResponseData(404, "Not Found", "Posts Not Found", null));
+        }
+
+        const totalPages = Math.ceil(posts.count / Number(limit));
+
+        const response = {
+            currentPage: Number(page),
+            totalPages: totalPages,
+            totalItems: posts.count,
+            itemsPerPage: Number(limit),
+            data: posts.rows
+        };
+
         res.status(200);
-        res.send(Helper.ResponseData(200, "SUCCESS", null, posts));
+        res.send(Helper.ResponseData(200, "SUCCESS", null, response));
         return;
     } catch (error: any) {
         res.status(500);
