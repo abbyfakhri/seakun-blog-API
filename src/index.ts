@@ -6,7 +6,9 @@ dotenv.config()
 const app = express();
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
+const URL_PREFIX = process.env.URL_PREFIX || "/api/v1"
+
+app.get(`${URL_PREFIX}/`, (req: Request, res: Response) => {
   res.status(200);
   res.send({
     "message": "Welcome to seakun.id blog"
@@ -14,8 +16,8 @@ app.get("/", (req: Request, res: Response) => {
   return;
 })
 
-app.use(router);
+app.use(URL_PREFIX, router);
 
 app.listen(process.env.APP_PORT, () => {
-  console.log(`server running on http://localhost:${process.env.APP_PORT}`);
+  console.log(`server running on http://localhost:${process.env.APP_PORT}${URL_PREFIX}`);
 });
