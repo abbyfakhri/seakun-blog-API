@@ -136,6 +136,30 @@ To test the API, you can download the Postman collection from [here](https://dri
 
 ### **GET /posts**
 - **Description**: Retrieve a list of all blog posts.
+- **Response Body**:
+  ```json
+    {
+    "status": 200,
+    "message": "SUCCESS",
+    "errors": null,
+    "data": [
+        {
+            "id": 1,
+            "title": "Understanding JavaScript Closures",
+            "content": "Closures are a fundamental concept in JavaScript that allow functions to remember the scope in which they were created...",
+            "createdAt": "2024-12-12T17:47:29.000Z",
+            "updatedAt": "2024-12-12T17:47:29.000Z"
+        },
+        {
+            "id": 2,
+            "title": "mantap jiwa sekali",
+            "content": "goks mantap",
+            "createdAt": "2024-12-12T17:47:29.000Z",
+            "updatedAt": "2024-12-12T19:40:29.000Z"
+        }
+      ]
+    }
+  ```
 
 ### **GET /posts?page=page_count&limit=return_limit**
 - **Description**: Retrieve a list of all blog posts using pagination.
@@ -172,6 +196,21 @@ To test the API, you can download the Postman collection from [here](https://dri
 
 ### **GET /posts/:id**
 - **Description**: Retrieve a single blog post by its ID.
+- **Response Body**:
+  ```json
+    {
+      "status": 200,
+      "message": "SUCCESS",
+      "errors": null,
+      "data": {
+          "id": 2,
+          "title": "mantap jiwa sekali",
+          "content": "goks mantap",
+          "createdAt": "2024-12-12T17:47:29.000Z",
+          "updatedAt": "2024-12-12T19:40:29.000Z"
+      }
+    }
+  ```
 
 ### **POST /posts**
 - **Description**: Create a new blog post.
@@ -182,6 +221,21 @@ To test the API, you can download the Postman collection from [here](https://dri
         "content": "string" (required)
     }
     ```
+- **Response Body**
+  ```json
+  {
+    "status": 201,
+    "message": "Post Created",
+    "errors": null,
+    "data": {
+        "id": 106,
+        "title": "this is new title",
+        "content": "this is new content",
+        "updatedAt": "2024-12-13T05:34:02.147Z",
+        "createdAt": "2024-12-13T05:34:02.147Z"
+    }
+  }
+  ```
 
 ### **PUT /posts/:id**
 - **Description**: Update an existing blog post by its ID.
@@ -192,8 +246,33 @@ To test the API, you can download the Postman collection from [here](https://dri
         "content": "string" (required if title does not exist)
     }
     ```
+- **Response Body**
+  ```json
+  {
+    "status": 200,
+    "message": "Post with id: 2 updated",
+    "errors": null,
+    "data": {
+        "id": 2,
+        "title": "mantap jiwa sekali",
+        "content": "ini konten baru",
+        "createdAt": "2024-12-12T17:47:29.000Z",
+        "updatedAt": "2024-12-13T05:32:43.417Z"
+    }
+  }
+  ```
 - **Validation**: At least one of `title` or `content` must be present.
 
 ### **DELETE /posts/:id**
 - **Description**: Delete a blog post by its ID.
+- **Response Body**
+    ```json
+    {
+        "status": 200,
+        "message": "Post with id: 16 deleted",
+        "errors": null,
+        "data": null
+    }
+
+    ```
 
