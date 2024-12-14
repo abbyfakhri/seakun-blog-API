@@ -23,7 +23,7 @@ This is a simple API for a blog platform, where you can manage posts, including 
     ```bash
     cd seakun-blog-API
     ```
-5. Create .env file
+5. Create .env file 
 Example:
 ```env
 APP_NAME="seakun-blog-API"
@@ -43,14 +43,14 @@ DB_NAME=seakun_blog
     ```bash
     docker build -t seakun-blog-api .
     ```
+   If you are running docker on linux
+   ```bash
+   docker build -t seakun-blog-api . --add-host=host.docker.internal:172.17.0.1
+   ```
 7. Run Docker Image as Container
     ```bash
     docker run -d -p 9000:9000 --name seakun-blog-api-container seakun-blog-api:latest
     ```
-    If you are running docker on linux
-   ```bash
-   docker build -t seakun-blog-api . --add-host=host.docker.internal:172.17.0.1
-   ```
 9. Try out the API [Postman Collection](#api)
 
 
