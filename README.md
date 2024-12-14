@@ -47,7 +47,11 @@ DB_NAME=seakun_blog
     ```bash
     docker run -d -p 9000:9000 --name seakun-blog-api-container seakun-blog-api:latest
     ```
-8. Try out the API [Postman Collection](#api)
+    If you are running docker on linux
+   ```bash
+   docker build -t seakun-blog-api . --add-host=host.docker.internal:172.17.0.1
+   ```
+9. Try out the API [Postman Collection](#api)
 
 
 ---
