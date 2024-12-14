@@ -32,7 +32,7 @@ BASEURL=localhost
 URL_PREFIX="/api/v1"
 APP_MODE=development
 
-DB_HOST=host.docker.internal // for docker to be able to access it's host network
+DB_HOST=host.docker.internal # for docker to be able to access it's host network
 DB_PORT=3306
 DB_USERNAME=root
 DB_PASSWORD=
