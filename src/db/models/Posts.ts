@@ -7,6 +7,7 @@ interface PostAttributes {
   content: string;
   createdAt?: Date;
   updatedAt?: Date;
+  isActive: boolean;
 }
 
 export interface PostInput extends Optional<PostAttributes, 'id'> {}
@@ -16,6 +17,7 @@ class Post extends Model<PostAttributes, PostInput> implements PostAttributes {
   public id!: number;
   public title!: string;
   public content!: string;
+  public isActive!: boolean;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -37,6 +39,10 @@ Post.init(
       allowNull: false,
       type: DataTypes.TEXT,
     },
+    isActive: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+    }
   },
   {
     timestamps: true,

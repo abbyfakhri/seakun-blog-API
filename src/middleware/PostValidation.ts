@@ -35,16 +35,18 @@ const ValidateCreatePost = async (req: Request, res: Response, next: NextFunctio
 
 const ValidateUpdatePost = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { title, content } = req.body;
+        const { title, content, isActive } = req.body;
     
         const data = {
             title,
-            content
+            content,
+            isActive
         };
     
         const rules: Validator.Rules = {
             title: "string|required_without:content",
-            content: "string|required_without:title"
+            content: "string|required_without:title",
+            isActive: "boolean|required"
         };
     
         const validate = new Validator(data, rules);

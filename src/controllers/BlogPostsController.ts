@@ -7,7 +7,9 @@ const GetPosts: RequestHandler = async (req: Request, res: Response) => {
         const { page, limit } = req.query;
 
         if (!page || !limit) {
-            const posts = await Post.findAll();
+            const posts = await Post.findAll({
+                attributes: ['title', 'content']
+            });
 
             if (!posts.length) {
                 res.status(404);
@@ -21,7 +23,9 @@ const GetPosts: RequestHandler = async (req: Request, res: Response) => {
         }
 
         const offset = (Number(page) - 1) * Number(limit);
+
         const posts = await Post.findAndCountAll({
+            attributes: ['title', 'content'],
             limit: Number(limit),
             offset: offset
         });
@@ -77,7 +81,8 @@ const CreatePost: RequestHandler = async (req: Request, res: Response) => {
         const { title, content } = req.body;
         const post = await Post.create({
             title: title,
-            content: content
+            content: content,
+            isActive: false
         });
 
         res.status(201);
@@ -93,7 +98,7 @@ const CreatePost: RequestHandler = async (req: Request, res: Response) => {
 const EditPost: RequestHandler = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const { title, content } = req.body;
+        const { title, content, isActive } = req.body;
         const post = await Post.findByPk(id);
 
         if (!post) {
@@ -104,6 +109,7 @@ const EditPost: RequestHandler = async (req: Request, res: Response) => {
 
         post.title = title ?? post.title;
         post.content = content ?? post.content;
+        post.isActive = isActive;
         
         await post.save();
 

@@ -49,7 +49,7 @@ DB_NAME=seakun_blog
    ```
 7. Run Docker Image as Container
     ```bash
-    docker run -d -p 9000:9000 --name seakun-blog-api-container seakun-blog-api:latest
+    docker run -d -p 9000:9000 --name seakun-blog-api-container seakun-blog-api:latest --add-host=host.docker.internal:172.17.0.1
     ```
 9. Try out the API [Postman Collection](#api)
 
